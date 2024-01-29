@@ -7,7 +7,20 @@ public class User {
 	private String address;
 	private String phoneNum;
 	private int status;
+	private boolean isLoaned;
 	
+	public User(int id, String userName, String address, String phoneNum,
+			boolean isLoaned) {
+		super();
+		this.id = id;
+		this.userName = userName;
+		this.address = address;
+		this.phoneNum = phoneNum;
+		this.isLoaned = isLoaned;
+	}
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
 	public int getId() {
 		return id;
 	}
@@ -43,6 +56,12 @@ public class User {
 	}
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	public boolean isLoaned() {
+		return isLoaned;
+	}
+	public void setLoaned(boolean isLoaned) {
+		this.isLoaned = isLoaned;
 	}
 
 }

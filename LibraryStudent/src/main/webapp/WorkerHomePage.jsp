@@ -7,13 +7,10 @@
 <title>worker</title>
 </head>
 <body>
-	<form action="/LibraryStudent/Registration.jsp">
-		<input type="submit" name="Regist" value="regist">
-	</form>
 	<form method="post" action="../../registration/controller/MessageServlet">
 		<input type="submit" name="messages" value="messages">
 	</form>
-	<form method="post" action="../../registration/controller/GetUserServlet">
+	<form method="post" action="../../WorkerUsersServlet">
 		<input type="submit" name="users" value="users">
 	</form>
 	<form method="post" action="../../registration/controller/GetBookServlet">

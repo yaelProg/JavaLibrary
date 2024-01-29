@@ -17,7 +17,7 @@ import registration.model.Book;
  */
 public class AddBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private BookDao userDao = new BookDao();
+	private BookDao bookDao = new BookDao();
        
     /**
      * @see HttpServlet#HttpServlet()

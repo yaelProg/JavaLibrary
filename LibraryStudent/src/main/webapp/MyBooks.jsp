@@ -27,9 +27,6 @@ import = "java.util.*"%>
 </tr>
 <%} %>
 </table>
-<form method="post" action="/UserHomePage.jsp">
-<input type="submit" name="homePage" value="back"></td>
-</form>
 </body>
 </html>
 </html>

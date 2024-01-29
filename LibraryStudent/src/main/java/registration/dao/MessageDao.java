@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import registration.model.Book;
 import registration.model.Message;
 
 public class MessageDao {
@@ -91,6 +92,47 @@ public class MessageDao {
 		
 		return dataList;
 	}
+	
+	public static int addMessage(int id, String body) throws ClassNotFoundException{
+		// TODO Auto-generated method stub 
+			
+		     String INSERT_MSG_SQL = "INSERT INTO message(id, body)"+
+		     " VALUES (?,?);";
+			
+		    /// String CONNECTION_STR = "jdbc:mysql://localhost:3306/students?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+		     
+
+				int result = 0;
+				
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				
+				try {
+				Connection connection = DriverManager.getConnection(CONNECTION_STR,"root","1234");
+				
+				if (connection != null) {
+					
+		            System.out.println("Connected to the database books");
+		        }
+				              
+				PreparedStatement preparedStatement = connection.prepareStatement(INSERT_MSG_SQL);
+						
+				Message message = new Message();
+				preparedStatement.setInt(1,message.getId());
+				preparedStatement.setString(2,message.getBody());
+				
+				
+				System.out.println(preparedStatement);
+				result = preparedStatement.executeUpdate();
+						
+				}
+				catch(SQLException e) {
+					
+					e.printStackTrace();
+					
+				}
+				return result;		
+		}
+	
 
 }
 

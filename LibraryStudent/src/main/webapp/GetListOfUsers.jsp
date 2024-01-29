@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-import = "java.util.*" import= "registration.model.Book"%>
+import = "java.util.*" import= "registration.model.User"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -14,33 +14,34 @@ import = "java.util.*" import= "registration.model.Book"%>
 <td width = "119"  ><b>Name</b></td>
 <td width = "119"  ><b>Address</b></td>
 <td width = "119"  ><b>Phone</b></td>
-<td width = "119"  ><b>Status</b></td>
 </tr>
 
 <% Iterator itr;%>
 <% List data = (List)request.getAttribute("UserData"); 
    for(itr=data.iterator();itr.hasNext();)   
    {	
-%>
+
+	   User user = (User)(itr.next()); %>
 <tr>
-<td width = "119"><%=itr.next() %></td>
-<td width = "119"><%=itr.next() %></td>
-<td width = "119" ><%=itr.next() %></td>
-<td width = "119"><%=itr.next() %></td>
-<td width = "119"><%=itr.next() %></td>
+<td width = "119"><%= user.getUserName() %></td>
+<td width = "119"><%= user.getAddress() %></td>
+<td width = "119" ><%= user.getPhoneNum() %></td>
+<% if (user.isLoaned()) { %>
+	<td>The user has loaned books</td>
+<%} else{ %>
 <td><form method="post" action="DeleteUserServlet">
-	<input type="hidden" name="id" value="<%=itr.next() %>">
-	<input type="submit" name="delete" value="delete">
-</form></td>
+	<input type = "hidden" name = "id" value = "<%= user.getId() %>">
+		<input type="submit" name="delete" value="delete">
+	</form>
+</td>
+<% } %>
 </tr>
 <%} %>
+
+<td><form action="/LibraryStudent/Registration.jsp">
+	<input type="submit" name="Add new user" value="regist">
+</form></td>
 </table>
-<form method="post" action="../../Users.jsp">
-<input type="submit" name="addUser" value="Add new user"></td>
-</form>
-<form method="post" action="/GetListOfUsers.jsp">
-<input type="submit" name="homePage" value="back">
-</form>
 </body>
 </html>
 </html>

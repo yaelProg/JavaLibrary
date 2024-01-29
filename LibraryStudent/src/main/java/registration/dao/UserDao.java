@@ -12,7 +12,7 @@ import registration.model.User;
 
 public class UserDao {
 	
-	public String CONNECTION_STR = "jdbc:mysql://localhost:3306/studentsnew?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	public static String CONNECTION_STR = "jdbc:mysql://localhost:3306/studentsnew?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	
 	public int registerUser(User user) throws ClassNotFoundException{
 		
@@ -56,10 +56,12 @@ public class UserDao {
 				
 	}
 	 
-	public List getListOfUsers() throws ClassNotFoundException{
-	List dataList = new ArrayList();
+	public List<User> getListOfUsers() throws ClassNotFoundException{
+		List<User> dataList = new ArrayList<User>();
 		
-		String SQL = "select * from userSimple";
+		String SQL = "SELECT distinct u.id, u.userName, u.address, u.phone, l.isLoaned FROM studentsnew.usersimple u left join studentsnew.loan l\r\n"
+				+ "on  u.id = l.userId\r\n"
+				+ "order by l.isLoaned desc";
     	java.sql.Statement stmt;
 							
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -80,9 +82,15 @@ public class UserDao {
 			
 			while (rs.next()) {
 			
-			    System.out.println(rs.getString("userName") + " - " + rs.getString("pass"));
-			    dataList.add(rs.getString("userName"));
-			    dataList.add(rs.getString("pass"));	    
+			    System.out.println(rs.getString("userName"));
+			    String name =(rs.getString("userName"));
+			    String address =(rs.getString("address"));	    
+			    String phone =(rs.getString("phone"));
+			    boolean isLoaned =(rs.getBoolean("isLoaned"));
+			    int id =(rs.getInt("id"));
+			    User user = new User(id, name, address, phone, isLoaned);
+			    
+			    dataList.add(user);
 			}
 			
 			rs.close();
@@ -95,6 +103,7 @@ public class UserDao {
 		
 		return dataList;
 	}
+	
 
 	public User login(String userName, String password) throws ClassNotFoundException, SQLException{
 		String GET_BY_NAME_AND_PASSWORD = "SELECT id, userName, status FROM studentsnew.usersimple WHERE username = ? and pass = ?;";
@@ -135,6 +144,37 @@ public class UserDao {
 		return user;
 		
 	}
+
+	public static int deleteUser(int id) throws ClassNotFoundException {
+		// TODO Auto-generated method stub
+					
+			String DELETE_USER_SQL = "DELETE FROM studentsnew.usersimple WHERE id = ?";
+			int result = 0;
+
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			try {
+			Connection connection = DriverManager.getConnection(CONNECTION_STR,"root","1234");
+			
+			if (connection != null) {
+				
+	            System.out.println("Connected to the database users");
+	        }
+			
+			PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER_SQL);
+			preparedStatement.setInt(1, id);
+			System.out.println(preparedStatement);
+			result = preparedStatement.executeUpdate();
+			}
+			
+			catch(SQLException e) {
+				
+				e.printStackTrace();
+				
+			}
+			return result;		
+
+		}	
 	
 }
 

@@ -41,7 +41,7 @@ public class GetBookServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	System.out.println("aaa");
 		//student Servlet code
-		int status = (int)(request.getParameter("status").charAt(0))-48;
+		int status = Integer.parseInt(request.getParameter("status"));
 		String name = request.getParameter("name");
 		
 		Book book = new Book();
@@ -57,7 +57,7 @@ public class GetBookServlet extends HttpServlet {
 			}
 		
         request.setAttribute("BookData", dataList);
-		        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/MyBooks.jsp");
+		        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/UserBooks.jsp");
         
         if (status == 0)
        	 	requestDispatcher = request.getRequestDispatcher("/Books.jsp");

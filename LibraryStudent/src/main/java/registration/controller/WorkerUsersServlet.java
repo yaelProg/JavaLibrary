@@ -10,17 +10,19 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import registration.dao.UserDao;
+import registration.model.User;
 
 /**
  * Servlet implementation class StudentServlet
  */
-public class DeleteUserServlet extends HttpServlet {
+public class WorkerUsersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private UserDao userDao = new UserDao();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteUserServlet() {
+    public WorkerUsersServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,29 +36,27 @@ public class DeleteUserServlet extends HttpServlet {
 	}
 
 	/**
-	 * @param id 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	System.out.println("aaa");
 		//student Servlet code
-		int id = Integer.parseInt(request.getParameter("id"));
-			System.out.println(id);		
-		try {
 				
-			UserDao.deleteUser(id);
+		List dataList = new ArrayList();
+
+		try {
+			dataList = userDao.getListOfUsers();
 		} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		
-		
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("WorkerUsersServlet");
-		System.out.println("delete user path->"+ requestDispatcher);
+        request.setAttribute("UserData", dataList);
+		        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/GetListOfUsers.jsp");
+        
+		System.out.println("Users path->"+ requestDispatcher);
 		if(requestDispatcher !=null )
             requestDispatcher.forward(request, response);
-		
-	
 	}
 
 }
-

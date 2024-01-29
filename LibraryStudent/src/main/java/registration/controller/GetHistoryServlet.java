@@ -9,18 +9,20 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import registration.dao.UserDao;
+import registration.dao.BookDao;
+import registration.model.Book;
 
 /**
  * Servlet implementation class StudentServlet
  */
-public class DeleteUserServlet extends HttpServlet {
+public class GetHistoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private BookDao bookDao = new BookDao();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteUserServlet() {
+    public GetHistoryServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,28 +36,27 @@ public class DeleteUserServlet extends HttpServlet {
 	}
 
 	/**
-	 * @param id 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
 		//student Servlet code
 		int id = Integer.parseInt(request.getParameter("id"));
-			System.out.println(id);		
-		try {
 				
-			UserDao.deleteUser(id);
+		List dataList = new ArrayList();
+		try {
+			dataList = bookDao.history(id);
 		} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		
+        request.setAttribute("HistoryData", dataList);
 		
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("WorkerUsersServlet");
-		System.out.println("delete user path->"+ requestDispatcher);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/History.jsp");
+		System.out.println("History path->"+ requestDispatcher);
 		if(requestDispatcher !=null )
             requestDispatcher.forward(request, response);
-		
-	
 	}
 
 }

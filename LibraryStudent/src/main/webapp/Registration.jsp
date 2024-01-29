@@ -44,7 +44,10 @@
 				<td><input type="submit" name="signIn" value="Sign in"></td>
 			</tr>
 		</table>
-	</form>
+		</form>
+<form method="post" action="registration/controller/GetBookServlet">
+	<input type="hidden" name="status" value=0>
+<input type="submit" name="back" value="back">
+</form>
 </body>
-
 </html>

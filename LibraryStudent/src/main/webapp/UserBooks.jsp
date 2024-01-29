@@ -25,17 +25,14 @@ import = "java.util.*" import= "registration.model.Book"%>
 <td width = "119"><%=itr.next() %></td>
 <td width = "119" ><%=itr.next() %></td>
 <td width = "119"><%=itr.next() %></td>
-<td><form method="post" action="DeleteBookServlet">
+<td><form method="post" action="LoanBookServlet">
 	<input type="hidden" name="id" value="<%=itr.next() %>">
 		<input type="hidden" name="status" value=0>
-	<input type="submit" name="delete" value="delete">
+	<input type="submit" name="Loan" value="Loan">
 </form></td>
 </tr>
 <%} %>
 </table>
-<form method="post" action="../../AddBook.jsp">
-<input type="submit" name="addBook" value="Add new book">
-</form>
 </body>
 </html>
 </html>
