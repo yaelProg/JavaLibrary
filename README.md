@@ -1,7 +1,9 @@
 # Library Management System
 
 ## Description
-This project is a library management system developed in Java with a MySQL database. The system provides a website interface for users to perform various actions related to borrowing and returning books, as well as other library-related tasks. The system supports three types of users: Students, Teachers, and Library Workers.
+### This project is a library management system developed in Java with a MySQL database. The system provides a website interface for users to perform various actions related to borrowing and returning books, as well as other library-related tasks. The system supports three types of users: Students, Teachers, and Library Workers.
+
+![Capture1](https://github.com/yaelProg/JavaLibrary/assets/156606079/a1d5246c-dccc-4bc9-b7f2-55b18aefa657)
 
 ## Features
 
