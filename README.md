@@ -34,3 +34,16 @@
 - Users must log in to the library system using a username and password.
 - Only existing users in the library system can access the system.
 - Users have three attempts to enter the correct login credentials.
+
+## Getting Started
+To run the project, follow these steps:
+
+**1. Run InitializeLibraryDB.sql:** Before running the Java project, you need to set up the database. Execute the InitializeLibraryDB.sql script in a relational database environment such as MySQL to create the necessary database tables and     populate initial data.
+
+**2. Run the Java Project:** Once the database is set up, you can run the Java project in your preferred Integrated Development Environment (IDE) or by compiling and executing the project source files.
+
+**3. Log In:**
+   - Username: library@gmail.com
+   - Password: 1234
+
+**4. Interact with the Application:** You can now interact with the application through the web interface. 
