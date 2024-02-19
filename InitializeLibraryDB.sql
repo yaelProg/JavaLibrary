@@ -89,7 +89,7 @@ CREATE TABLE `message` (
 --
 
 LOCK TABLES `message` WRITE;
-INSERT INTO `message` VALUES (1,'ty',2,0),
+INSERT INTO `message` VALUES (1,'Lost Book Report',2,0),
 (2,'Notification of Lost Library Card',9,0),
 (3,'Feedback on Library Staff Assistance',4,1),
 (4,'Question About Library Membership Renewal',10,1),
@@ -122,7 +122,7 @@ CREATE TABLE `usersimple` (
 
 LOCK TABLES `usersimple` WRITE;
 INSERT INTO `usersimple` VALUES (1,'library@gmail.com','1234', '321 Sandy Ln','0506789012',0),
-(2,'musiclover_2022@gmail.com','Sunshine2022!','29 Meadowbrook Road' ,'0553698542',1),
+(2,'musiclover_2022@gmail.com','Sunshine2022!','29 Meadow Rd' ,'0553698542',1),
 (3,'johndoe85@gmail.com','p@ssw0rd','123 Main St','0526803479',1),
 (4,'sarah_smith@gmail.com','ilovebooks','456 Elm St','0508881234',1),
 (5,'lisa.greenwood@gmail.com','Pa$$w0rd123','456 Meadow Rd','0588247063',2),
