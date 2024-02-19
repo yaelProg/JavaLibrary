@@ -98,7 +98,7 @@ INSERT INTO `message` VALUES (1,'Lost Book Report',2,0),
 (7,'Issue with Library Website',3,1),
 (8,'Feedback on recent book loan',4,0),
 (9,'Suggestion for Library Event',9,0),
-(10,'Thank you',5,1);
+(10,'Book Donation Inquiry',5,1);
 UNLOCK TABLES;
 
 --
